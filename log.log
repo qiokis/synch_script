@@ -1,0 +1,32 @@
+2021-12-13 23:00:46,427 - copier - INFO - synchronization started
+2021-12-13 23:00:46,430 - copier - INFO - synchronization complete
+2021-12-13 23:00:46,430 - copier - INFO - fall asleep for 10 seconds
+2021-12-13 23:00:56,437 - copier - INFO - synchronization started
+2021-12-13 23:00:56,437 - copier - INFO - rpl\Новая папка (2) was deleted
+2021-12-13 23:00:56,439 - copier - INFO - synchronization complete
+2021-12-13 23:00:56,439 - copier - INFO - fall asleep for 10 seconds
+2021-12-13 23:01:06,453 - copier - INFO - synchronization started
+2021-12-13 23:01:06,455 - copier - INFO - synchronization complete
+2021-12-13 23:01:06,455 - copier - INFO - fall asleep for 10 seconds
+2021-12-13 23:01:16,456 - copier - INFO - synchronization started
+2021-12-13 23:01:16,457 - copier - INFO - rpl\1232.txt hash does not match the original file hash
+2021-12-13 23:01:16,457 - copier - INFO - src\1232.txt was copied to rpl\1232.txt
+2021-12-13 23:01:16,459 - copier - INFO - synchronization complete
+2021-12-13 23:01:16,459 - copier - INFO - fall asleep for 10 seconds
+2021-12-13 23:01:26,465 - copier - INFO - synchronization started
+2021-12-13 23:01:26,467 - copier - INFO - synchronization complete
+2021-12-13 23:01:26,467 - copier - INFO - fall asleep for 10 seconds
+2021-12-13 23:01:36,477 - copier - INFO - synchronization started
+2021-12-13 23:01:36,479 - copier - INFO - synchronization complete
+2021-12-13 23:01:36,479 - copier - INFO - fall asleep for 10 seconds
+2021-12-13 23:01:46,486 - copier - INFO - synchronization started
+2021-12-13 23:01:46,488 - copier - INFO - synchronization complete
+2021-12-13 23:01:46,488 - copier - INFO - fall asleep for 10 seconds
+2021-12-13 23:01:56,503 - copier - INFO - synchronization started
+2021-12-13 23:01:56,504 - copier - INFO - rpl\test.txt does not exist in replica
+2021-12-13 23:01:56,505 - copier - INFO - src\test.txt was copied to rpl\test.txt
+2021-12-13 23:01:56,506 - copier - INFO - synchronization complete
+2021-12-13 23:01:56,506 - copier - INFO - fall asleep for 10 seconds
+2021-12-13 23:02:06,522 - copier - INFO - synchronization started
+2021-12-13 23:02:06,524 - copier - INFO - synchronization complete
+2021-12-13 23:02:06,524 - copier - INFO - fall asleep for 10 seconds
