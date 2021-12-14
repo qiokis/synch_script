@@ -1,6 +1,6 @@
 import os
 import sys
-from pathlib import *
+import pathlib
 import shutil
 import logging
 import hashlib
@@ -12,14 +12,25 @@ def deep_copy(folder_src, folder_rpl, logger, sleep_time):
     logger.info('synchronization started')
 
     for el in os.walk(folder_src):
-        src_path = Path(el[0])
-        rpl_path = Path(os.path.join(*[folder_rpl, *src_path.parts[1:]]))
+        # Путь к источнику
+        src_path = pathlib.Path(el[0])
+        # Элементы пути без корневой папки источника
+        parts_without_root = pathlib.Path(el[0].replace(folder_src, '')).parts[1:]
+        # Путь к реплике
+        rpl_path = pathlib.Path(os.path.join(folder_rpl, *parts_without_root))
 
+        # Директории источнка
         src_dirs = el[1]
+        # Файлы источника
         src_files = el[2]
 
-        rpl_dirs, rpl_files = os.walk(rpl_path).__next__()[1:]
+        # Директории и файлы реплики
+        rpl_dirs, rpl_files = [], []
+        for paths in os.walk(rpl_path):
+            rpl_dirs, rpl_files = paths[1:]
+            break
 
+        # Проверка и удаление файлов и папок которых нет в источнике
         for element in rpl_dirs + rpl_files:
             if element not in src_dirs + src_files:
                 path = os.path.join(rpl_path, element)
@@ -29,6 +40,7 @@ def deep_copy(folder_src, folder_rpl, logger, sleep_time):
                     os.remove(path)
                 logger.info(f'{path} was deleted')
 
+        # Проверка существования директорий и их создание
         for direct in src_dirs:
             path = rpl_path / direct
             if os.path.exists(path):
@@ -38,6 +50,8 @@ def deep_copy(folder_src, folder_rpl, logger, sleep_time):
                 os.mkdir(path)
                 logger.info(f'{path} was created')
 
+        # Проверка существования файлов,
+        # проверка соответствия содержимого файлов вычислением хэша и копирование
         for file in src_files:
             path = rpl_path / file
             if os.path.exists(path):
@@ -58,6 +72,7 @@ def deep_copy(folder_src, folder_rpl, logger, sleep_time):
 
 
 def setup_logger(name):
+    # Конфигурация логера
     log = logging.getLogger(name)
     log.setLevel(logging.INFO)
     file_handler = logging.FileHandler(log_path, 'w', 'utf-8')
@@ -89,11 +104,8 @@ def file_hash(file_name):
 
 
 if __name__ == '__main__':
-    try:
-        source_folder, replica_folder, synch_delay, log_path = sys.argv[1:]
-    except BaseException as error:
-        print(error)
-    # source_folder, replica_folder, synch_delay, log_path = 'src', 'rpl', 1, 'log.log'
+
+    source_folder, replica_folder, synch_delay, log_path = sys.argv[1:]
 
     log = setup_logger('copier')
 
@@ -101,5 +113,11 @@ if __name__ == '__main__':
 
         deep_copy(source_folder, replica_folder, log, synch_delay)
 
-        time.sleep(int(synch_delay))
+        if synch_delay == -1:
+            break
+
+        try:
+            time.sleep(int(synch_delay))
+        except KeyboardInterrupt:
+            break
 
